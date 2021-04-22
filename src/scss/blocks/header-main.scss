@@ -1,0 +1,83 @@
+.header-main {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #F6F7FF;
+}
+
+.header-main__navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;  
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.header-main__logo-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+
+  color: #1F1E25;
+  text-decoration: none;
+}
+
+.header-main__logo-image {
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.header-main__logo-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-main__menu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 10px;
+
+  list-style: none;
+}
+
+.header-main__menu-item {
+  padding: 10px;
+}
+
+.header-main__menu-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+
+  font-family: 'Roboto', 'Arial', 'Helvetica', sans-serif;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+
+  text-decoration: none;
+  color: #1F1E25;
+}
+
+.header-main__menu-link--active {
+  color: #2C36F2;
+}
+
+.header-main__menu-link--login {
+  margin: 20px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 40px;
+  background-image: url('../../img/login-icon.svg');
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+}

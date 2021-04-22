@@ -1,0 +1,97 @@
+.footer-main {
+  background-color: #F6F7FF;
+}
+
+.footer-main__container {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 80px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.footer-main__address-container {
+  min-width: 252px;
+}
+
+.footer-main__address {
+  padding-top: 20px;
+  color: #707C87;
+  font-style: normal;
+  font-size: 12px;
+}
+
+.footer-main__logo-link {
+  display: block;
+}
+
+.footer-main__logo-image {
+  display: block;
+  width: 150px;
+  height: 27px;
+}
+
+.footer-main__menu {
+  @include list-reset;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-main__menu-item {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.footer-main__menu-link {
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  color: #1F1E25;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.footer-main__tel-container {
+  padding-left: 30px;
+
+  background-repeat: no-repeat;
+}
+
+.footer-main__tel-container--celluar {
+  background-image: url('../../img/phone-cellular-icon.svg');
+}
+
+.footer-main__tel-container--federal {
+  background-image: url('../../img/phone-handset-icon.svg');
+}
+
+.footer-main__tel-link {
+  color: #1F1E25;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.footer-main__tel-text {
+  color: #707C87;
+  font-size: 12px;
+}
+
+.footer-main__social-menu {
+  @include list-reset;
+  display: grid;
+  grid-auto-flow: column;
+  align-content: start;
+  gap: 5px;
+}
+
+.footer-main__social-menu-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.footer-main__social-menu-icon {
+  display: block;
+}

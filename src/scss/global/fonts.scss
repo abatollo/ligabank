@@ -1,0 +1,63 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../../fonts/roboto-v27-cyrillic-regular.eot');
+  src: 
+    local('Roboto'),
+    url('../../fonts/roboto-v27-cyrillic-regular.eot?#iefix') format('embedded-opentype'),
+    url('../../fonts/roboto-v27-cyrillic-regular.woff2') format('woff2'),
+    url('../../fonts/roboto-v27-cyrillic-regular.woff') format('woff'),
+    url('../../fonts/roboto-v27-cyrillic-regular.ttf') format('truetype'),
+    url('../../fonts/roboto-v27-cyrillic-regular.svg#Roboto') format('svg');
+  unicode-range: U+0400–U+04FF;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../../fonts/roboto-v27-cyrillic-500.eot');
+  src: 
+    local('Roboto'),
+    url('../../fonts/roboto-v27-cyrillic-500.eot?#iefix') format('embedded-opentype'),
+    url('../../fonts/roboto-v27-cyrillic-500.woff2') format('woff2'),
+    url('../../fonts/roboto-v27-cyrillic-500.woff') format('woff'),
+    url('../../fonts/roboto-v27-cyrillic-500.ttf') format('truetype'),
+    url('../../fonts/roboto-v27-cyrillic-500.svg#Roboto') format('svg');
+  unicode-range: U+0400–U+04FF;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../../fonts/roboto-v27-cyrillic-700.eot');
+  src: 
+    local('Roboto'),
+    url('../../fonts/roboto-v27-cyrillic-700.eot?#iefix') format('embedded-opentype'),
+    url('../../fonts/roboto-v27-cyrillic-700.woff2') format('woff2'),
+    url('../../fonts/roboto-v27-cyrillic-700.woff') format('woff'),
+    url('../../fonts/roboto-v27-cyrillic-700.ttf') format('truetype'),
+    url('../../fonts/roboto-v27-cyrillic-700.svg#Roboto') format('svg');
+  unicode-range: U+0400–U+04FF;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../../fonts/roboto-v27-latin-regular.eot'); 
+  src: 
+    local('Roboto'),
+    url('../../fonts/roboto-v27-latin-regular.eot?#iefix') format('embedded-opentype'),
+    url('../../fonts/roboto-v27-latin-regular.woff2') format('woff2'),
+    url('../../fonts/roboto-v27-latin-regular.woff') format('woff'),
+    url('../../fonts/roboto-v27-latin-regular.ttf') format('truetype'),
+    url('../../fonts/roboto-v27-latin-regular.svg#Roboto') format('svg');
+  unicode-range: U+000-5FF;
+}
