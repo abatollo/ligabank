@@ -1,0 +1,78 @@
+.section-converter {
+  background-color: white;
+}
+
+.section-converter__heading {
+  font-size: 41px;
+  color: #1F1E25;
+}
+
+.section-converter__form {
+  display: grid;
+  margin-bottom: 50px;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 85px;
+}
+
+.section-converter__column {
+  background-color: white;
+}
+
+.section-converter__column--second {
+  justify-self: end;
+}
+
+.section-converter__label {
+  display: block;
+  font-weight: 500;
+  font-size: 22px;
+  color: #1F1E25;
+}
+
+.section-converter__input-text {
+  width: 390px;
+  height: 60px;
+  border: 1px solid #1F1E25;
+  border-radius: 4px;
+
+  text-align: center;
+
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.section-converter__select {
+  margin-left: 15px;
+  width: 120px;
+  height: 60px;
+  border: 1px solid #1F1E25;
+  border-radius: 4px;
+
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.section-converter__input-date {
+  width: 390px;
+  height: 60px;
+  border: 1px solid #1F1E25;
+  border-radius: 4px;
+  
+  text-align: center;
+
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.section-converter__button-submit {
+  width: 382px;
+  height: 60px;
+  border: none;
+  background: #2C36F2;
+  border-radius: 4px;
+  justify-self: end;
+
+  font-weight: 500;
+  font-size: 18px;
+  color: #F6F7FF;
+}
