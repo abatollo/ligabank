@@ -1,17 +1,24 @@
 .section-converter {
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+  padding-bottom: 50px;
 }
 
 .section-converter__heading {
+  margin: 0;
+  padding-top: 30px;
+  padding-bottom: 30px;
+
   font-size: 41px;
   color: #1F1E25;
 }
 
 .section-converter__form {
   display: grid;
-  margin-bottom: 50px;
   grid-template-columns: repeat(2, 1fr);
   row-gap: 85px;
+  padding-top: 40px;
 }
 
 .section-converter__column {
@@ -24,6 +31,8 @@
 
 .section-converter__label {
   display: block;
+  margin-bottom: 30px;
+
   font-weight: 500;
   font-size: 22px;
   color: #1F1E25;
@@ -46,22 +55,36 @@
   width: 120px;
   height: 60px;
   border: 1px solid #1F1E25;
-  border-radius: 4px;
+  padding-top: 9px;
+  padding-right: 10px;
+  padding-bottom: 9px;
+  padding-left: 18px;
 
   font-weight: 500;
   font-size: 24px;
+
+  border-radius: 4px;
+  appearance: none;
+  background-image: url('../../img/select-arrow-icon.svg');
+  background-repeat: no-repeat;
+  background-position: center right 10px;
 }
 
 .section-converter__input-date {
   width: 390px;
   height: 60px;
   border: 1px solid #1F1E25;
-  border-radius: 4px;
   
   text-align: center;
 
   font-weight: 500;
   font-size: 24px;
+
+  border-radius: 4px;
+  appearance: none;
+  background-image: url('../../img/datepicker-icon.svg');
+  background-repeat: no-repeat;
+  background-position: center right 10px;
 }
 
 .section-converter__button-submit {

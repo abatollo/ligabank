@@ -1,4 +1,14 @@
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import { registerLocale, setDefaultLocale } from  "react-datepicker";
+import ru from 'date-fns/locale/ru';
+
+import "react-datepicker/dist/react-datepicker.css";
+
 const SectionConverter = () => {
+  const [startDate, setStartDate] = useState(new Date());
+  registerLocale('ru', ru)
+
   return (
     <section className="section-converter container center">
       <h1 className="section-converter__heading">Конвертер валют</h1>
@@ -25,7 +35,15 @@ const SectionConverter = () => {
             <option value="cny">CNY</option>
           </select>
         </div>
-        <input className="section-converter__input-date" type="date"></input>
+        <div className="section-converter__datepicker-container">
+          <DatePicker 
+          className="section-converter__input-date" 
+          locale="ru" 
+          dateFormat="dd.MM.yyyy"
+          selected={startDate} 
+          onChange={date => setStartDate(date)} />
+        </div>
+        
         <button className="section-converter__button-submit" type="submit">Сохранить результат</button>
       </form>
     </section>
