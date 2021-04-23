@@ -5,8 +5,18 @@
   background-color: #2027B3;
   background-image: 
     url('../../img/hero-background.jpg'),
-    linear-gradient(to bottom, rgb(44, 54, 242) 0%, rgb(32, 39, 179) 100%);
+    url('../../img/linear-gradient-fragment.jpg');
   background-position: center;
+  background-repeat: no-repeat, repeat;
+  background-size: contain;
+}
+
+@media screen and (min-resolution: 2dppx) {
+  .section-hero {
+    background-image: 
+      url('../../img/hero-background@2x.jpg'),
+      url('../../img/linear-gradient-fragment@2x.jpg');
+  }
 }
 
 .section-hero__heading {
