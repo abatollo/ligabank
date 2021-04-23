@@ -1,35 +1,48 @@
-import React, { useState } from "react";
+import React from 'react';
 import {connect} from 'react-redux';
-import DatePicker from "react-datepicker";
-import { registerLocale } from  "react-datepicker";
+import DatePicker from 'react-datepicker';
+import { registerLocale } from  'react-datepicker';
 import ru from 'date-fns/locale/ru';
 
 import PropTypes from 'prop-types';
 import {ActionCreator} from '../../store/action';
+import {convertFromSourceToTarget, convertFromTargetToSource} from '../../store/api-actions';
 
 import "react-datepicker/dist/react-datepicker.css";
 
-const SectionConverter = ({sourceCurrency, targetCurrency, changeSourceCurrency, changeTargetCurrency}) => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [sourceCurrencyValue, setSourceCurrencyValue] = useState(1000);
-  const [targetCurrencyValue, setTargetCurrencyValue] = useState(13.1254);
-
-  registerLocale('ru', ru);
+const SectionConverter = ({
+    sourceCurrencyValue,
+    changeSourceCurrencyValue,
+    sourceCurrency,
+    changeSourceCurrency,
+    targetCurrencyValue,
+    changeTargetCurrencyValue,
+    targetCurrency,
+    changeTargetCurrency,
+    date,
+    changeDate
+  }) => {
 
   const onSourceCurrencyValueChange = (evt) => {
-    setSourceCurrencyValue(Number(evt.target.value));
+    changeSourceCurrencyValue(Number(evt.target.value));
   };
 
   const onSourceCurrencyChange = (evt) => {
-    changeSourceCurrency(evt.target.value)
+    changeSourceCurrency(evt.target.value);
   };
 
   const onTargetCurrencyValueChange = (evt) => {
-    setTargetCurrencyValue(Number(evt.target.value));
+    changeTargetCurrencyValue(Number(evt.target.value));
   };
 
   const onTargetCurrencyChange = (evt) => {
-    changeTargetCurrency(evt.target.value)
+    changeTargetCurrency(evt.target.value);
+  };
+
+  registerLocale('ru', ru);
+
+  const onDatePickerChange = (date) => {
+    changeDate(date);
   };
 
   return (
@@ -56,7 +69,7 @@ const SectionConverter = ({sourceCurrency, targetCurrency, changeSourceCurrency,
             <option value="RUB">RUB</option>
             <option value="USD">USD</option>
             <option value="EUR">EUR</option>
-            <option value="GBR">GBR</option>
+            <option value="GBP">GBP</option>
             <option value="CNY">CNY</option>
           </select>
         </div>
@@ -80,17 +93,18 @@ const SectionConverter = ({sourceCurrency, targetCurrency, changeSourceCurrency,
             <option value="RUB">RUB</option>
             <option value="USD">USD</option>
             <option value="EUR">EUR</option>
-            <option value="GBR">GBR</option>
+            <option value="GBP">GBP</option>
             <option value="CNY">CNY</option>
           </select>
         </div>
         <div className="section-converter__datepicker-container">
           <DatePicker 
-          className="section-converter__input-date" 
-          locale="ru" 
-          dateFormat="dd.MM.yyyy"
-          selected={startDate} 
-          onChange={date => setStartDate(date)} />
+            className="section-converter__input-date" 
+            locale="ru" 
+            dateFormat="dd.MM.yyyy"
+            selected={date} 
+            onChange={onDatePickerChange} 
+          />
         </div>
         <button className="section-converter__button-submit" type="submit">Сохранить результат</button>
       </form>
@@ -99,25 +113,47 @@ const SectionConverter = ({sourceCurrency, targetCurrency, changeSourceCurrency,
 }
 
 SectionConverter.propTypes = {
+  sourceCurrencyValue: PropTypes.number.isRequired,
   sourceCurrency: PropTypes.string.isRequired,
   changeSourceCurrency: PropTypes.func.isRequired,
+
+  targetCurrencyValue: PropTypes.number.isRequired,
   targetCurrency: PropTypes.string.isRequired,
-  changeTargetCurrency: PropTypes.func.isRequired
+  changeTargetCurrency: PropTypes.func.isRequired,
+
+  date: PropTypes.object.isRequired,
+  changeDate: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
+    sourceCurrencyValue: state.sourceCurrencyValue,
     sourceCurrency: state.sourceCurrency,
-    targetCurrency: state.targetCurrency
+    targetCurrencyValue: state.targetCurrencyValue,
+    targetCurrency: state.targetCurrency,
+    date: state.date
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  changeSourceCurrencyValue(value) {
+    dispatch(ActionCreator.changeSourceCurrencyValue(value));
+    dispatch(convertFromSourceToTarget());
+  },
   changeSourceCurrency(value) {
     dispatch(ActionCreator.changeSourceCurrency(value));
+    dispatch(convertFromSourceToTarget());
+  },
+  changeTargetCurrencyValue(value) {
+    dispatch(ActionCreator.changeTargetCurrencyValue(value));
+    dispatch(convertFromTargetToSource());
   },
   changeTargetCurrency(value) {
     dispatch(ActionCreator.changeTargetCurrency(value));
+    dispatch(convertFromTargetToSource());
+  },
+  changeDate(value) {
+    dispatch(ActionCreator.changeDate(value));
   }
 });
 
