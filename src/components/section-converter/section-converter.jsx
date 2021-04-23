@@ -1,26 +1,35 @@
 import React, { useState } from "react";
+import {connect} from 'react-redux';
 import DatePicker from "react-datepicker";
 import { registerLocale } from  "react-datepicker";
 import ru from 'date-fns/locale/ru';
 
+import PropTypes from 'prop-types';
+import {ActionCreator} from '../../store/action';
+
 import "react-datepicker/dist/react-datepicker.css";
 
-const SectionConverter = () => {
+const SectionConverter = ({sourceCurrency, targetCurrency, changeSourceCurrency, changeTargetCurrency}) => {
   const [startDate, setStartDate] = useState(new Date());
+  const [sourceCurrencyValue, setSourceCurrencyValue] = useState(1000);
+  const [targetCurrencyValue, setTargetCurrencyValue] = useState(13.1254);
+
   registerLocale('ru', ru);
 
-  const [sourceCurrency, setSourceCurrency] = useState(1000);
-
-  const onSourceCurrencyChange = (evt) => {
-    const {value} = evt.target;
-    setSourceCurrency(Number(value));
+  const onSourceCurrencyValueChange = (evt) => {
+    setSourceCurrencyValue(Number(evt.target.value));
   };
 
-  const [targetCurrency, setTargetCurrency] = useState(13.1254);
+  const onSourceCurrencyChange = (evt) => {
+    changeSourceCurrency(evt.target.value)
+  };
+
+  const onTargetCurrencyValueChange = (evt) => {
+    setTargetCurrencyValue(Number(evt.target.value));
+  };
 
   const onTargetCurrencyChange = (evt) => {
-    const {value} = evt.target;
-    setTargetCurrency(Number(value));
+    changeTargetCurrency(evt.target.value)
   };
 
   return (
@@ -29,24 +38,50 @@ const SectionConverter = () => {
       <form className="section-converter__form" action="">
         <div className="section-converter__column">
           <label className="section-converter__label" htmlFor="section-converter__source-currency-input">У меня есть</label>
-          <input className="section-converter__input-text" id="section-converter__source-currency-input" name="source-currency-input" type="text" value={sourceCurrency} onChange={onSourceCurrencyChange}/>
-          <select className="section-converter__select" id="source-currency-select" name="">
-            <option value="rub">RUB</option>
-            <option value="usd">USD</option>
-            <option value="eur">EUR</option>
-            <option value="gbr">GBR</option>
-            <option value="cny">CNY</option>
+          <input 
+            className="section-converter__input-text" 
+            id="section-converter__source-currency-input" 
+            name="source-currency-input" 
+            type="text" 
+            value={sourceCurrencyValue} 
+            onChange={onSourceCurrencyValueChange}
+          />
+          <select 
+            className="section-converter__select" 
+            id="source-currency-select" 
+            name="" 
+            value={sourceCurrency} 
+            onChange={onSourceCurrencyChange}
+          >
+            <option value="RUB">RUB</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBR">GBR</option>
+            <option value="CNY">CNY</option>
           </select>
         </div>
         <div className="section-converter__column section-converter__column--second">
           <label className="section-converter__label" htmlFor="section-converter__target-currency-input">Хочу приобрести</label>
-          <input className="section-converter__input-text" id="section-converter__target-currency-input" name="target-currency-input" type="text" value={targetCurrency} onChange={onTargetCurrencyChange}/>
-          <select className="section-converter__select" id="target-currency-select" name="">
-            <option value="rub">RUB</option>
-            <option value="usd">USD</option>
-            <option value="eur">EUR</option>
-            <option value="gbr">GBR</option>
-            <option value="cny">CNY</option>
+          <input 
+            className="section-converter__input-text" 
+            id="section-converter__target-currency-input" 
+            name="target-currency-input" 
+            type="text" 
+            value={targetCurrencyValue} 
+            onChange={onTargetCurrencyValueChange}
+          />
+          <select 
+            className="section-converter__select" 
+            id="target-currency-select" 
+            name="" 
+            value={targetCurrency} 
+            onChange={onTargetCurrencyChange}
+          >
+            <option value="RUB">RUB</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBR">GBR</option>
+            <option value="CNY">CNY</option>
           </select>
         </div>
         <div className="section-converter__datepicker-container">
@@ -63,4 +98,27 @@ const SectionConverter = () => {
   );
 }
 
-export default SectionConverter;
+SectionConverter.propTypes = {
+  sourceCurrency: PropTypes.string.isRequired,
+  changeSourceCurrency: PropTypes.func.isRequired,
+  targetCurrency: PropTypes.string.isRequired,
+  changeTargetCurrency: PropTypes.func.isRequired
+};
+
+const mapStateToProps = (state) => {
+  return {
+    sourceCurrency: state.sourceCurrency,
+    targetCurrency: state.targetCurrency
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  changeSourceCurrency(value) {
+    dispatch(ActionCreator.changeSourceCurrency(value));
+  },
+  changeTargetCurrency(value) {
+    dispatch(ActionCreator.changeTargetCurrency(value));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SectionConverter);
