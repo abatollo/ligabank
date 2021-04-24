@@ -154,6 +154,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   changeDate(value) {
     dispatch(ActionCreator.changeDate(value));
+    dispatch(convertFromSourceToTarget());
   }
 });
 

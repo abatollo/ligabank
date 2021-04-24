@@ -16,41 +16,12 @@ import './scss/style.scss';
 
 const api = createAPI();
 
-// const currencyRates = {
-//   "22.04.2021": {
-//     USD: null,
-//     EUR: null,
-//     GBR: null,
-//     CNY: null
-//   },
-//   "23.04.2021": {
-//     USD: null,
-//     EUR: null,
-//     GBR: null,
-//     CNY: null
-//   }
-// };
-
 const store = createStore(
   reducer,
   composeWithDevTools(
       applyMiddleware(thunk.withExtraArgument(api))
   )
 );
-
-console.log(store);
-
-// api.get().then(({data}) => {
-//   var parser = new DOMParser();
-//   var parsedData = parser.parseFromString(data, "application/xml");
-//   currencyRates["23.04.2021"]["USD"] = parsedData.querySelector(`[ID="R01235"] Value`).textContent;
-//   currencyRates["23.04.2021"]["EUR"] = parsedData.querySelector(`[ID="R01239"] Value`).textContent;
-//   currencyRates["23.04.2021"]["GBR"] = parsedData.querySelector(`[ID="R01035"] Value`).textContent;
-//   currencyRates["23.04.2021"]["CNY"] = parsedData.querySelector(`[ID="R01375"] Value`).textContent;
-//   console.log(currencyRates);
-// });
-
-
 
 ReactDOM.render(
   <Provider store={store}>
