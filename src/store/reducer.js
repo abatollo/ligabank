@@ -1,5 +1,7 @@
 import {ActionType} from './action';
 
+import {HISTORY_LENGTH} from '../const/history-length';
+
 const initialState = {
   sourceCurrencyAmount: 1000,
   sourceCurrencyCode: `RUB`,
@@ -39,7 +41,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.SAVE_TO_HISTORY:
       return {
         ...state,
-        convertionHistory: [action.payload, ...state.convertionHistory],
+        convertionHistory: [action.payload, ...state.convertionHistory.splice(0, HISTORY_LENGTH - 1)],
       };
     case ActionType.DELETE_HISTORY:
       return {

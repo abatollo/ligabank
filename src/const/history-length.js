@@ -1,0 +1,3 @@
+const HISTORY_LENGTH = 10;
+
+export {HISTORY_LENGTH};
