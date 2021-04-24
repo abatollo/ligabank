@@ -3,7 +3,8 @@ const ActionType = {
   CHANGE_SOURCE_CURRENCY_CODE: `CHANGE_SOURCE_CURRENCY_CODE`,
   CHANGE_TARGET_CURRENCY_AMOUNT: `CHANGE_TARGET_CURRENCY_AMOUNT`,
   CHANGE_TARGET_CURRENCY_CODE: `CHANGE_TARGET_CURRENCY_CODE`,
-  CHANGE_DATE: `CHANGE_DATE`
+  CHANGE_DATE: `CHANGE_DATE`,
+  SAVE_TO_HISTORY: `SAVE_TO_HISTORY`
 };
 
 const ActionCreator = {
@@ -25,6 +26,10 @@ const ActionCreator = {
   }),
   changeDate: (payload) => ({
     type: ActionType.CHANGE_DATE,
+    payload
+  }),
+  saveToHistory: (payload) => ({
+    type: ActionType.SAVE_TO_HISTORY,
     payload
   })
 };

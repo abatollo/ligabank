@@ -16,13 +16,18 @@ const SectionConverter = ({
     changeSourceCurrencyAmount,
     sourceCurrencyCode,
     changeSourceCurrencyCode,
+
     targetCurrencyAmount,
     changeTargetCurrencyAmount,
     targetCurrencyCode,
     changeTargetCurrencyCode,
+
     date,
-    changeDate
+    changeDate,
+
+    saveToHistory
   }) => {
+
 
   const onSourceCurrencyAmountChange = (evt) => {
     changeSourceCurrencyAmount(Number(evt.target.value));
@@ -32,6 +37,7 @@ const SectionConverter = ({
     changeSourceCurrencyCode(evt.target.value);
   };
 
+
   const onTargetCurrencyAmountChange = (evt) => {
     changeTargetCurrencyAmount(Number(evt.target.value));
   };
@@ -39,6 +45,7 @@ const SectionConverter = ({
   const onTargetCurrencyCodeChange = (evt) => {
     changeTargetCurrencyCode(evt.target.value);
   };
+
 
   registerLocale('ru', ru);
 
@@ -48,6 +55,7 @@ const SectionConverter = ({
 
   const onConverterFormSubmit = (evt) => {
     evt.preventDefault();
+    saveToHistory({date, sourceCurrencyAmount, sourceCurrencyCode, targetCurrencyAmount, targetCurrencyCode});
   };
 
   return (
@@ -133,7 +141,9 @@ SectionConverter.propTypes = {
   changeTargetCurrencyCode: PropTypes.func.isRequired,
 
   date: PropTypes.object.isRequired,
-  changeDate: PropTypes.func.isRequired
+  changeDate: PropTypes.func.isRequired,
+
+  saveToHistory: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -166,6 +176,9 @@ const mapDispatchToProps = (dispatch) => ({
   changeDate(value) {
     dispatch(ActionCreator.changeDate(value));
     dispatch(convertFromSourceToTarget());
+  },
+  saveToHistory(newHistoryRecord) {
+    dispatch(ActionCreator.saveToHistory(newHistoryRecord));
   }
 });
 

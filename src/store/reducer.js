@@ -5,7 +5,8 @@ const initialState = {
   sourceCurrencyCode: `RUB`,
   targetCurrencyAmount: 13.1254,
   targetCurrencyCode: `USD`,
-  date: new Date()
+  date: new Date(),
+  convertionHistory: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -34,6 +35,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         date: action.payload,
+      };
+    case ActionType.SAVE_TO_HISTORY:
+      return {
+        ...state,
+        convertionHistory: [...state.convertionHistory, action.payload],
       };
     default:
       return state;
