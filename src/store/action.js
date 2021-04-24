@@ -1,26 +1,26 @@
 const ActionType = {
-  CHANGE_SOURCE_CURRENCY_VALUE: `CHANGE_SOURCE_CURRENCY_VALUE`,
-  CHANGE_SOURCE_CURRENCY: `CHANGE_SOURCE_CURRENCY`,
-  CHANGE_TARGET_CURRENCY_VALUE: `CHANGE_TARGET_CURRENCY_VALUE`,
-  CHANGE_TARGET_CURRENCY: `CHANGE_TARGET_CURRENCY`,
+  CHANGE_SOURCE_CURRENCY_AMOUNT: `CHANGE_SOURCE_CURRENCY_AMOUNT`,
+  CHANGE_SOURCE_CURRENCY_CODE: `CHANGE_SOURCE_CURRENCY_CODE`,
+  CHANGE_TARGET_CURRENCY_AMOUNT: `CHANGE_TARGET_CURRENCY_AMOUNT`,
+  CHANGE_TARGET_CURRENCY_CODE: `CHANGE_TARGET_CURRENCY_CODE`,
   CHANGE_DATE: `CHANGE_DATE`
 };
 
 const ActionCreator = {
-  changeSourceCurrencyValue: (payload) => ({
-    type: ActionType.CHANGE_SOURCE_CURRENCY_VALUE,
+  changeSourceCurrencyAmount: (payload) => ({
+    type: ActionType.CHANGE_SOURCE_CURRENCY_AMOUNT,
     payload
   }),
-  changeSourceCurrency: (payload) => ({
-    type: ActionType.CHANGE_SOURCE_CURRENCY,
+  changeSourceCurrencyCode: (payload) => ({
+    type: ActionType.CHANGE_SOURCE_CURRENCY_CODE,
     payload
   }),
-  changeTargetCurrencyValue: (payload) => ({
-    type: ActionType.CHANGE_TARGET_CURRENCY_VALUE,
+  changeTargetCurrencyAmount: (payload) => ({
+    type: ActionType.CHANGE_TARGET_CURRENCY_AMOUNT,
     payload
   }),
-  changeTargetCurrency: (payload) => ({
-    type: ActionType.CHANGE_TARGET_CURRENCY,
+  changeTargetCurrencyCode: (payload) => ({
+    type: ActionType.CHANGE_TARGET_CURRENCY_CODE,
     payload
   }),
   changeDate: (payload) => ({

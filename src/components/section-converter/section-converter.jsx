@@ -1,48 +1,53 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import DatePicker from 'react-datepicker';
-import { registerLocale } from  'react-datepicker';
+import {registerLocale} from  'react-datepicker';
 import ru from 'date-fns/locale/ru';
+import 'react-datepicker/dist/react-datepicker.css';
 
 import PropTypes from 'prop-types';
+
 import {ActionCreator} from '../../store/action';
 import {convertFromSourceToTarget, convertFromTargetToSource} from '../../store/api-actions';
 
-import "react-datepicker/dist/react-datepicker.css";
+import {connect} from 'react-redux';
 
 const SectionConverter = ({
-    sourceCurrencyValue,
-    changeSourceCurrencyValue,
-    sourceCurrency,
-    changeSourceCurrency,
-    targetCurrencyValue,
-    changeTargetCurrencyValue,
-    targetCurrency,
-    changeTargetCurrency,
+    sourceCurrencyAmount,
+    changeSourceCurrencyAmount,
+    sourceCurrencyCode,
+    changeSourceCurrencyCode,
+    targetCurrencyAmount,
+    changeTargetCurrencyAmount,
+    targetCurrencyCode,
+    changeTargetCurrencyCode,
     date,
     changeDate
   }) => {
 
-  const onSourceCurrencyValueChange = (evt) => {
-    changeSourceCurrencyValue(Number(evt.target.value));
+  const onSourceCurrencyAmountChange = (evt) => {
+    changeSourceCurrencyAmount(Number(evt.target.value));
   };
 
-  const onSourceCurrencyChange = (evt) => {
-    changeSourceCurrency(evt.target.value);
+  const onSourceCurrencyCodeChange = (evt) => {
+    changeSourceCurrencyCode(evt.target.value);
   };
 
-  const onTargetCurrencyValueChange = (evt) => {
-    changeTargetCurrencyValue(Number(evt.target.value));
+  const onTargetCurrencyAmountChange = (evt) => {
+    changeTargetCurrencyAmount(Number(evt.target.value));
   };
 
-  const onTargetCurrencyChange = (evt) => {
-    changeTargetCurrency(evt.target.value);
+  const onTargetCurrencyCodeChange = (evt) => {
+    changeTargetCurrencyCode(evt.target.value);
   };
 
   registerLocale('ru', ru);
 
   const onDatePickerChange = (date) => {
     changeDate(date);
+  };
+
+  const onConverterFormSubmit = (evt) => {
+    evt.preventDefault();
   };
 
   return (
@@ -56,15 +61,15 @@ const SectionConverter = ({
             id="section-converter__source-currency-input" 
             name="source-currency-input" 
             type="text" 
-            value={sourceCurrencyValue} 
-            onChange={onSourceCurrencyValueChange}
+            value={sourceCurrencyAmount} 
+            onChange={onSourceCurrencyAmountChange}
           />
           <select 
             className="section-converter__select" 
             id="source-currency-select" 
             name="" 
-            value={sourceCurrency} 
-            onChange={onSourceCurrencyChange}
+            value={sourceCurrencyCode} 
+            onChange={onSourceCurrencyCodeChange}
           >
             <option value="RUB">RUB</option>
             <option value="USD">USD</option>
@@ -80,15 +85,15 @@ const SectionConverter = ({
             id="section-converter__target-currency-input" 
             name="target-currency-input" 
             type="text" 
-            value={targetCurrencyValue} 
-            onChange={onTargetCurrencyValueChange}
+            value={targetCurrencyAmount} 
+            onChange={onTargetCurrencyAmountChange}
           />
           <select 
             className="section-converter__select" 
             id="target-currency-select" 
             name="" 
-            value={targetCurrency} 
-            onChange={onTargetCurrencyChange}
+            value={targetCurrencyCode} 
+            onChange={onTargetCurrencyCodeChange}
           >
             <option value="RUB">RUB</option>
             <option value="USD">USD</option>
@@ -106,20 +111,26 @@ const SectionConverter = ({
             onChange={onDatePickerChange} 
           />
         </div>
-        <button className="section-converter__button-submit" type="submit">Сохранить результат</button>
+        <button 
+          className="section-converter__button-submit" 
+          type="submit"
+          onClick={onConverterFormSubmit}
+        >
+          Сохранить результат
+        </button>
       </form>
     </section>
   );
 }
 
 SectionConverter.propTypes = {
-  sourceCurrencyValue: PropTypes.number.isRequired,
-  sourceCurrency: PropTypes.string.isRequired,
-  changeSourceCurrency: PropTypes.func.isRequired,
+  sourceCurrencyAmount: PropTypes.number.isRequired,
+  sourceCurrencyCode: PropTypes.string.isRequired,
+  changeSourceCurrencyCode: PropTypes.func.isRequired,
 
-  targetCurrencyValue: PropTypes.number.isRequired,
-  targetCurrency: PropTypes.string.isRequired,
-  changeTargetCurrency: PropTypes.func.isRequired,
+  targetCurrencyAmount: PropTypes.number.isRequired,
+  targetCurrencyCode: PropTypes.string.isRequired,
+  changeTargetCurrencyCode: PropTypes.func.isRequired,
 
   date: PropTypes.object.isRequired,
   changeDate: PropTypes.func.isRequired
@@ -127,29 +138,29 @@ SectionConverter.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    sourceCurrencyValue: state.sourceCurrencyValue,
-    sourceCurrency: state.sourceCurrency,
-    targetCurrencyValue: state.targetCurrencyValue,
-    targetCurrency: state.targetCurrency,
+    sourceCurrencyAmount: state.sourceCurrencyAmount,
+    sourceCurrencyCode: state.sourceCurrencyCode,
+    targetCurrencyAmount: state.targetCurrencyAmount,
+    targetCurrencyCode: state.targetCurrencyCode,
     date: state.date
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  changeSourceCurrencyValue(value) {
-    dispatch(ActionCreator.changeSourceCurrencyValue(value));
+  changeSourceCurrencyAmount(value) {
+    dispatch(ActionCreator.changeSourceCurrencyAmount(value));
     dispatch(convertFromSourceToTarget());
   },
-  changeSourceCurrency(value) {
-    dispatch(ActionCreator.changeSourceCurrency(value));
+  changeSourceCurrencyCode(value) {
+    dispatch(ActionCreator.changeSourceCurrencyCode(value));
     dispatch(convertFromSourceToTarget());
   },
-  changeTargetCurrencyValue(value) {
-    dispatch(ActionCreator.changeTargetCurrencyValue(value));
+  changeTargetCurrencyAmount(value) {
+    dispatch(ActionCreator.changeTargetCurrencyAmount(value));
     dispatch(convertFromTargetToSource());
   },
-  changeTargetCurrency(value) {
-    dispatch(ActionCreator.changeTargetCurrency(value));
+  changeTargetCurrencyCode(value) {
+    dispatch(ActionCreator.changeTargetCurrencyCode(value));
     dispatch(convertFromTargetToSource());
   },
   changeDate(value) {

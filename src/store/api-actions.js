@@ -3,25 +3,25 @@ import {ActionCreator} from './action';
 import {API_KEY} from '../const/api-key';
 
 const convertFromSourceToTarget = () => (dispatch, _getState, api) => {
-  const sourceCurrency = _getState().sourceCurrency;
-  const targetCurrency = _getState().targetCurrency;
-  const sourceCurrencyValue = _getState().sourceCurrencyValue;
+  const sourceCurrencyCode = _getState().sourceCurrencyCode;
+  const targetCurrencyCode = _getState().targetCurrencyCode;
+  const sourceCurrencyAmount = _getState().sourceCurrencyAmount;
   const date = _getState().date.toISOString().slice(0,10);
-  api.get(`?q=${sourceCurrency}_${targetCurrency}&compact=ultra&date=${date}&apiKey=${API_KEY}`).then(({data}) => {
-    const pair = `${sourceCurrency}_${targetCurrency}`;
+  api.get(`?q=${sourceCurrencyCode}_${targetCurrencyCode}&compact=ultra&date=${date}&apiKey=${API_KEY}`).then(({data}) => {
+    const pair = `${sourceCurrencyCode}_${targetCurrencyCode}`;
     console.log(data[pair][date]);
-    dispatch(ActionCreator.changeTargetCurrencyValue(sourceCurrencyValue * data[pair][date]));
+    dispatch(ActionCreator.changeTargetCurrencyAmount(sourceCurrencyAmount * data[pair][date]));
   });
 };
 
 const convertFromTargetToSource = () => (dispatch, _getState, api) => {
-  const targetCurrency = _getState().targetCurrency;
-  const sourceCurrency = _getState().sourceCurrency;
-  const targetCurrencyValue = _getState().targetCurrencyValue;
+  const targetCurrencyCode = _getState().targetCurrencyCode;
+  const sourceCurrencyCode = _getState().sourceCurrencyCode;
+  const targetCurrencyAmount = _getState().targetCurrencyAmount;
   const date = _getState().date.toISOString().slice(0,10);
-  api.get(`?q=${targetCurrency}_${sourceCurrency}&compact=ultra&date=${date}&apiKey=${API_KEY}`).then(({data}) => {
-    const pair = `${targetCurrency}_${sourceCurrency}`;
-    dispatch(ActionCreator.changeSourceCurrencyValue(targetCurrencyValue * data[pair][date]));
+  api.get(`?q=${targetCurrencyCode}_${sourceCurrencyCode}&compact=ultra&date=${date}&apiKey=${API_KEY}`).then(({data}) => {
+    const pair = `${targetCurrencyCode}_${sourceCurrencyCode}`;
+    dispatch(ActionCreator.changeSourceCurrencyAmount(targetCurrencyAmount * data[pair][date]));
   });
 };
 

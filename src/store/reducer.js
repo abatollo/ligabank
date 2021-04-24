@@ -1,34 +1,34 @@
 import {ActionType} from './action';
 
 const initialState = {
-  sourceCurrencyValue: 1000,
-  sourceCurrency: `RUB`,
-  targetCurrencyValue: 13.1254,
-  targetCurrency: `USD`,
+  sourceCurrencyAmount: 1000,
+  sourceCurrencyCode: `RUB`,
+  targetCurrencyAmount: 13.1254,
+  targetCurrencyCode: `USD`,
   date: new Date()
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.CHANGE_SOURCE_CURRENCY_VALUE:
+    case ActionType.CHANGE_SOURCE_CURRENCY_AMOUNT:
       return {
         ...state,
-        sourceCurrencyValue: action.payload,
+        sourceCurrencyAmount: action.payload,
       };
-    case ActionType.CHANGE_SOURCE_CURRENCY:
+    case ActionType.CHANGE_SOURCE_CURRENCY_CODE:
       return {
         ...state,
-        sourceCurrency: action.payload,
+        sourceCurrencyCode: action.payload,
       };
-    case ActionType.CHANGE_TARGET_CURRENCY_VALUE:
+    case ActionType.CHANGE_TARGET_CURRENCY_AMOUNT:
       return {
         ...state,
-        targetCurrencyValue: action.payload,
+        targetCurrencyAmount: action.payload,
       };
-    case ActionType.CHANGE_TARGET_CURRENCY:
+    case ActionType.CHANGE_TARGET_CURRENCY_CODE:
       return {
         ...state,
-        targetCurrency: action.payload,
+        targetCurrencyCode: action.payload,
       };
     case ActionType.CHANGE_DATE:
       return {
