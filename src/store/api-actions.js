@@ -1,8 +1,8 @@
-import {ActionCreator} from './action';
-
 import {API_KEY} from '../const/api-key';
 
-const roundFourDecimals = (number) => Math.round( ( number + Number.EPSILON ) * 10000 ) / 10000;
+import {ActionCreator} from './action';
+
+import {roundFourDecimals} from '../utils/round-four-decimals';
 
 const convertFromSourceToTarget = () => (dispatch, _getState, api) => {
   const sourceCurrencyCode = _getState().sourceCurrencyCode;
