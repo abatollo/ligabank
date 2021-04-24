@@ -1,29 +1,48 @@
-import React from 'react';
-
 import PropTypes from 'prop-types';
 
 import {ActionCreator} from '../../store/action';
 
 import {connect} from 'react-redux';
 
+const formatDate = (date) => {
+
+  let dd = date.getDate();
+  if (dd < 10) {
+    dd = '0' + dd;
+  }
+
+  let mm = date.getMonth() + 1;
+  if (mm < 10) {
+    mm = '0' + mm;
+  }
+
+  const yyyy = date.getFullYear();
+
+  return `${dd}.${mm}.${yyyy}`;
+}
+
 const SectionHistory = ({convertionHistory}) => {
-  return (
-    <section className="section-history container center">
-      <div className={`section-history__container ${convertionHistory.length > 5 ? `section-history__container--divider` : ``}`}>
-        <h2 className="section-history__heading">История конвертаций</h2>
-        <ul className="section-history__list">
-          {convertionHistory.length ? convertionHistory.map((currentHistoryRecord, index) => 
-            <li className="section-history__item" key={index}>
-              <time className="section-history__item-time" dateTime="2020-11-25">{currentHistoryRecord.date.toISOString().slice(0,10)}</time>
-              <div className="section-history__item-value-from">{currentHistoryRecord.sourceCurrencyAmount} {currentHistoryRecord.sourceCurrencyCode}</div>
-              <div className="section-history__item-value-to">{currentHistoryRecord.targetCurrencyAmount} {currentHistoryRecord.targetCurrencyCode}</div>
-            </li>
-          ) : ``}
-        </ul>
-        <button className="section-history__button-reset" type="reset">Очистить историю</button>
-      </div>
-    </section>
-  );
+  if (convertionHistory.length > 0) {
+    return (
+      <section className="section-history container center">
+        <div className={`section-history__container ${convertionHistory.length > 5 ? `section-history__container--divider` : ``}`}>
+          <h2 className="section-history__heading">История конвертаций</h2>
+          <ul className="section-history__list">
+            {convertionHistory.map((currentHistoryRecord, index) => 
+              <li className="section-history__item" key={index}>
+                <time className="section-history__item-time" dateTime="2020-11-25">{formatDate(currentHistoryRecord.date)}</time>
+                <div className="section-history__item-value-from">{currentHistoryRecord.sourceCurrencyAmount} {currentHistoryRecord.sourceCurrencyCode}</div>
+                <div className="section-history__item-value-to">{currentHistoryRecord.targetCurrencyAmount} {currentHistoryRecord.targetCurrencyCode}</div>
+              </li>
+            )}
+          </ul>
+          <button className="section-history__button-reset" type="reset">Очистить историю</button>
+        </div>
+      </section>
+    );
+  } else {
+    return null;
+  }
 }
 
 SectionHistory.propTypes = {

@@ -1,4 +1,3 @@
-import React from 'react';
 import DatePicker from 'react-datepicker';
 import {registerLocale} from  'react-datepicker';
 import ru from 'date-fns/locale/ru';
@@ -171,7 +170,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   changeTargetCurrencyCode(value) {
     dispatch(ActionCreator.changeTargetCurrencyCode(value));
-    dispatch(convertFromTargetToSource());
+    dispatch(convertFromSourceToTarget());
   },
   changeDate(value) {
     dispatch(ActionCreator.changeDate(value));
