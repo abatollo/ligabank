@@ -36,15 +36,17 @@
   @include list-reset;
   display: grid;
   row-gap: 30px;
+  grid-auto-flow: column;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, auto);
 }
 
-.section-history__item:nth-of-type(2n) {
-  justify-self: right;
-}
-
-.section-history__item:nth-of-type(2n + 1) {
+.section-history__item {
   justify-self: left;
+}
+
+.section-history__item:nth-of-type(n + 6)  {
+  justify-self: right;
 }
 
 .section-history__item {
