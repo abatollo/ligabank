@@ -10,6 +10,10 @@ import {convertFromSourceToTarget, convertFromTargetToSource} from '../../store/
 
 import {connect} from 'react-redux';
 
+const subDays = (date, sub) => {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate() - sub);
+};
+
 const SectionConverter = ({
     sourceCurrencyAmount,
     changeSourceCurrencyAmount,
@@ -115,6 +119,8 @@ const SectionConverter = ({
             locale="ru" 
             dateFormat="dd.MM.yyyy"
             selected={date} 
+            minDate={subDays(new Date(), 7)}
+            maxDate={new Date()}
             onChange={onDatePickerChange} 
           />
         </div>
