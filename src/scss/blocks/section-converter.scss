@@ -26,7 +26,22 @@
 }
 
 .section-converter__column--second {
+  position: relative;
   justify-self: end;
+}
+
+.section-converter__column--second::after {
+  position: absolute;
+  top: 68px;
+  left: -87px;
+
+  width: 56px;
+  height: 36px;
+
+  background-image: url('../../img/conversion-forw-back.svg');
+  background-repeat: no-repeat;
+
+  content: '';
 }
 
 .section-converter__label {

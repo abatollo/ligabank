@@ -39,7 +39,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.SAVE_TO_HISTORY:
       return {
         ...state,
-        convertionHistory: [...state.convertionHistory, action.payload],
+        convertionHistory: [action.payload, ...state.convertionHistory],
       };
     case ActionType.DELETE_HISTORY:
       return {
