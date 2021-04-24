@@ -21,7 +21,17 @@ const formatDate = (date) => {
   return `${dd}.${mm}.${yyyy}`;
 }
 
-const SectionHistory = ({convertionHistory}) => {
+const SectionHistory = ({
+  convertionHistory, 
+  deleteHistory
+  }) => {
+
+
+  const onHistoryResetButtonClick = () => {
+    deleteHistory();
+  };
+
+
   if (convertionHistory.length > 0) {
     return (
       <section className="section-history container center">
@@ -36,7 +46,13 @@ const SectionHistory = ({convertionHistory}) => {
               </li>
             )}
           </ul>
-          <button className="section-history__button-reset" type="reset">Очистить историю</button>
+          <button 
+            className="section-history__button-reset" 
+            type="reset"
+            onClick={onHistoryResetButtonClick}
+          >
+            Очистить историю
+          </button>
         </div>
       </section>
     );
@@ -46,7 +62,8 @@ const SectionHistory = ({convertionHistory}) => {
 }
 
 SectionHistory.propTypes = {
-  convertionHistory: PropTypes.array.isRequired
+  convertionHistory: PropTypes.array.isRequired,
+  deleteHistory: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -56,8 +73,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  saveToHistory(newHistoryRecord) {
-    dispatch(ActionCreator.saveToHistory(newHistoryRecord));
+  deleteHistory() {
+    dispatch(ActionCreator.deleteHistory());
   }
 });
 

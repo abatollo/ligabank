@@ -41,6 +41,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         convertionHistory: [...state.convertionHistory, action.payload],
       };
+    case ActionType.DELETE_HISTORY:
+      return {
+        ...state,
+        convertionHistory: [],
+      };
     default:
       return state;
   }
