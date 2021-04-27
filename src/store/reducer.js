@@ -3,9 +3,9 @@ import {ActionType} from './action';
 import {HISTORY_LENGTH} from '../const/history-length';
 
 const initialState = {
-  sourceCurrencyAmount: 1000,
+  sourceCurrencyAmount: null,
   sourceCurrencyCode: `RUB`,
-  targetCurrencyAmount: 13.1254,
+  targetCurrencyAmount: null,
   targetCurrencyCode: `USD`,
   date: new Date(),
   convertionHistory: []

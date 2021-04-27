@@ -1,15 +1,21 @@
+import {DEFAULT_SOURCE_CURRENCY_AMOUNT} from '../../const/default-source-currency-amount';
+
+import {CurrencyCode} from '../../const/currency-code';
+
 import DatePicker from 'react-datepicker';
 import {registerLocale} from  'react-datepicker';
 import ru from 'date-fns/locale/ru';
 import 'react-datepicker/dist/react-datepicker.css';
 
+import {substractDays} from '../../utils/substract-days';
+
 import PropTypes from 'prop-types';
 
 import {ActionCreator} from '../../store/action';
-import {subDays} from '../../utils/sub-days';
 import {convertFromSourceToTarget, convertFromTargetToSource} from '../../store/api-actions';
 
 import {connect} from 'react-redux';
+import {useEffect} from 'react';
 
 const SectionConverter = ({
     sourceCurrencyAmount,
@@ -27,6 +33,11 @@ const SectionConverter = ({
 
     saveToHistory
   }) => {
+
+
+  useEffect(() => {
+    changeSourceCurrencyAmount(DEFAULT_SOURCE_CURRENCY_AMOUNT);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 
   const onSourceCurrencyAmountChange = (evt) => {
@@ -79,11 +90,9 @@ const SectionConverter = ({
             value={sourceCurrencyCode} 
             onChange={onSourceCurrencyCodeChange}
           >
-            <option value="RUB">RUB</option>
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="GBP">GBP</option>
-            <option value="CNY">CNY</option>
+          {CurrencyCode.map((currencyCode, index) => 
+            <option value={currencyCode} key={index}>{currencyCode}</option>
+          )}
           </select>
         </div>
         <div className="section-converter__column section-converter__column--second">
@@ -103,11 +112,9 @@ const SectionConverter = ({
             value={targetCurrencyCode} 
             onChange={onTargetCurrencyCodeChange}
           >
-            <option value="RUB">RUB</option>
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="GBP">GBP</option>
-            <option value="CNY">CNY</option>
+          {CurrencyCode.map((currencyCode, index) => 
+            <option value={currencyCode} key={index}>{currencyCode}</option>
+          )}
           </select>
         </div>
         <div className="section-converter__datepicker-container">
@@ -116,7 +123,7 @@ const SectionConverter = ({
             locale="ru" 
             dateFormat="dd.MM.yyyy"
             selected={date} 
-            minDate={subDays(new Date(), 7)}
+            minDate={substractDays(new Date(), 7)}
             maxDate={new Date()}
             onChange={onDatePickerChange} 
           />
