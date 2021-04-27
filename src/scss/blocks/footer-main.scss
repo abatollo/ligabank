@@ -11,7 +11,7 @@
 }
 
 .footer-main__address-container {
-  min-width: 252px;
+  min-width: 176px;
 }
 
 .footer-main__address {
@@ -19,6 +19,7 @@
   color: #707C87;
   font-style: normal;
   font-size: 12px;
+  line-height: 140%;
 }
 
 .footer-main__logo-link {
@@ -40,6 +41,14 @@
 .footer-main__menu-item {
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+.footer-main__menu-item:first-of-type {
+  padding-top: 0;
+}
+
+.footer-main__menu-item:last-of-type {
+  padding-bottom: 0;
 }
 
 .footer-main__menu-link {
