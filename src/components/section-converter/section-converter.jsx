@@ -6,13 +6,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 import PropTypes from 'prop-types';
 
 import {ActionCreator} from '../../store/action';
+import {subDays} from '../../utils/sub-days';
 import {convertFromSourceToTarget, convertFromTargetToSource} from '../../store/api-actions';
 
 import {connect} from 'react-redux';
-
-const subDays = (date, sub) => {
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate() - sub);
-};
 
 const SectionConverter = ({
     sourceCurrencyAmount,
