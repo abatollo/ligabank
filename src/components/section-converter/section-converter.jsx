@@ -166,24 +166,24 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  changeSourceCurrencyAmount(value) {
-    dispatch(ActionCreator.changeSourceCurrencyAmount(value));
+  changeSourceCurrencyAmount(newSourceCurrencyAmount) {
+    dispatch(ActionCreator.changeSourceCurrencyAmount(newSourceCurrencyAmount));
     dispatch(convertFromSourceToTarget());
   },
-  changeSourceCurrencyCode(value) {
-    dispatch(ActionCreator.changeSourceCurrencyCode(value));
+  changeSourceCurrencyCode(newSourceCurrencyCode) {
+    dispatch(ActionCreator.changeSourceCurrencyCode(newSourceCurrencyCode));
     dispatch(convertFromSourceToTarget());
   },
-  changeTargetCurrencyAmount(value) {
-    dispatch(ActionCreator.changeTargetCurrencyAmount(value));
+  changeTargetCurrencyAmount(newTargetCurrencyAmount) {
+    dispatch(ActionCreator.changeTargetCurrencyAmount(newTargetCurrencyAmount));
     dispatch(convertFromTargetToSource());
   },
-  changeTargetCurrencyCode(value) {
-    dispatch(ActionCreator.changeTargetCurrencyCode(value));
+  changeTargetCurrencyCode(newTargetCurrencyCode) {
+    dispatch(ActionCreator.changeTargetCurrencyCode(newTargetCurrencyCode));
     dispatch(convertFromSourceToTarget());
   },
-  changeDate(value) {
-    dispatch(ActionCreator.changeDate(value));
+  changeDate(newDate) {
+    dispatch(ActionCreator.changeDate(newDate));
     dispatch(convertFromSourceToTarget());
   },
   saveToHistory(newHistoryRecord) {
