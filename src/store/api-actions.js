@@ -11,7 +11,6 @@ const convertFromSourceToTarget = () => (dispatch, _getState, api) => {
   const date = _getState().date.toISOString().slice(0,10);
   api.get(`?q=${sourceCurrencyCode}_${targetCurrencyCode}&compact=ultra&date=${date}&apiKey=${API_KEY}`).then(({data}) => {
     const pair = `${sourceCurrencyCode}_${targetCurrencyCode}`;
-    console.log(data[pair][date]);
     dispatch(ActionCreator.changeTargetCurrencyAmount(roundFourDecimals(sourceCurrencyAmount * data[pair][date])));
   });
 };
