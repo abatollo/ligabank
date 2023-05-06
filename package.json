@@ -1,6 +1,6 @@
 {
   "name": "ligabank",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "private": true,
   "dependencies": {
     "@redux-devtools/extension": "^3.2.5",
