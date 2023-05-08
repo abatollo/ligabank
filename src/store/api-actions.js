@@ -9,9 +9,9 @@ const convertFromSourceToTarget = () => (dispatch, _getState, api) => {
   const targetCurrencyCode = _getState().targetCurrencyCode;
   const sourceCurrencyAmount = _getState().sourceCurrencyAmount;
   const date = _getState().date.toISOString().slice(0,10);
-  api.get(`?q=${sourceCurrencyCode}_${targetCurrencyCode}&compact=ultra&date=${date}&apiKey=${API_KEY}`).then(({data}) => {
-    const pair = `${sourceCurrencyCode}_${targetCurrencyCode}`;
-    dispatch(ActionCreator.changeTargetCurrencyAmount(roundFourDecimals(sourceCurrencyAmount * data[pair][date])));
+  api.get(`/historical/${date}.json?app_id=${API_KEY}`).then(({data}) => {
+    const targetCurrencyAmount = sourceCurrencyAmount / data.rates[sourceCurrencyCode] * data.rates[targetCurrencyCode];
+    dispatch(ActionCreator.changeTargetCurrencyAmount(roundFourDecimals(targetCurrencyAmount)));
   });
 };
 
@@ -20,9 +20,9 @@ const convertFromTargetToSource = () => (dispatch, _getState, api) => {
   const sourceCurrencyCode = _getState().sourceCurrencyCode;
   const targetCurrencyAmount = _getState().targetCurrencyAmount;
   const date = _getState().date.toISOString().slice(0,10);
-  api.get(`?q=${targetCurrencyCode}_${sourceCurrencyCode}&compact=ultra&date=${date}&apiKey=${API_KEY}`).then(({data}) => {
-    const pair = `${targetCurrencyCode}_${sourceCurrencyCode}`;
-    dispatch(ActionCreator.changeSourceCurrencyAmount(roundFourDecimals(targetCurrencyAmount * data[pair][date])));
+  api.get(`/historical/${date}.json?app_id=${API_KEY}`).then(({data}) => {
+    const sourceCurrencyAmount = targetCurrencyAmount / data.rates[targetCurrencyCode] * data.rates[sourceCurrencyCode];
+    dispatch(ActionCreator.changeSourceCurrencyAmount(roundFourDecimals(sourceCurrencyAmount)));
   });
 };
 
