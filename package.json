@@ -1,6 +1,6 @@
 {
   "name": "ligabank",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "private": true,
   "dependencies": {
     "@redux-devtools/extension": "^3.2.5",
@@ -13,7 +13,7 @@
     "react-scripts": "^5.0.1",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
-    "sass": "^1.64.1"
+    "sass": "^1.64.2"
   },
   "scripts": {
     "start": "react-scripts start",
