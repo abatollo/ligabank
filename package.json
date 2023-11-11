@@ -1,10 +1,10 @@
 {
   "name": "ligabank",
-  "version": "1.0.27",
+  "version": "1.0.28",
   "private": true,
   "dependencies": {
     "@redux-devtools/extension": "^3.2.6",
-    "axios": "^1.6.0",
+    "axios": "^1.6.1",
     "date-fns": "^2.30.0",
     "react": "^18.2.0",
     "react-datepicker": "^4.21.0",
