@@ -1,9 +1,9 @@
 {
   "name": "ligabank",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "private": true,
   "dependencies": {
-    "@redux-devtools/extension": "^3.2.6",
+    "@redux-devtools/extension": "^3.3.0",
     "axios": "^1.6.2",
     "date-fns": "^2.30.0",
     "react": "^18.2.0",
